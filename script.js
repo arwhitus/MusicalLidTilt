@@ -1,11 +1,20 @@
-function orientationUpdate(event) {
-    var a = event.alpha;
-    var x = event.beta;  // In degree in the range [-180,180)
-    var y = event.gamma; // In degree in the range [-90,90)
+let supported = true;
 
-    document.getElementById('pAlpha').innerText = 'Alpha = ' + a;
-    document.getElementById('pBeta').innerText = 'Beta = ' + x;
-    document.getElementById('pGamma').innerText = 'Gamma = ' + y;
+function noDeviceSupport() {
+    if (supported == true) {
+        alert("Your browser or device doesn't support or doesn't have Device Orientation. " +
+            "Therefore, this app will not work with this browser or app.");
+    }
+
+    supported = false;
+}
+
+function orientationUpdate(event) {
+    const beta = event.beta;  // In degree in the range [-180,180)
+
+    if(beta == null) { noDeviceSupport(); }
+
+    document.getElementById('pBeta').innerText = 'Beta = ' + beta;
 
     // Because we don't want to have the device upside down
     // We constrain the x value to the range [-90,90]
@@ -18,4 +27,8 @@ function orientationUpdate(event) {
     y += 90;
 }
 
-window.addEventListener('deviceorientation', orientationUpdate);
+if (window.DeviceOrientationEvent) {
+    window.addEventListener("deviceorientation", orientationUpdate);
+} else {
+    alert("Sorry, your browser doesn't support Device Orientation");
+}
