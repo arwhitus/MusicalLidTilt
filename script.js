@@ -1,7 +1,7 @@
 let supported = true;
 
 function noDeviceSupport() {
-    if (supported == true) {
+    if (supported === true) {
         alert("Your browser or device doesn't support or doesn't have Device Orientation. " +
             "Therefore, this app will not work with this browser or app.");
     }
@@ -14,11 +14,12 @@ function orientationUpdate(event) {
 
     if(beta == null) { noDeviceSupport(); }
 
-    document.getElementById('pBeta').innerText = 'Beta = ' + beta;
+    if(supported) {
+        document.getElementById('pBeta').innerText = 'Beta = ' + beta;
+    }
 }
 
-if (window.DeviceOrientationEvent) {
-    window.addEventListener("deviceorientation", orientationUpdate);
-} else {
-    alert("Sorry, your browser doesn't support Device Orientation");
+if (!window.DeviceOrientationEvent) {
+    noDeviceSupport();
 }
+window.addEventListener("deviceorientation", orientationUpdate);
