@@ -57,8 +57,9 @@ if (!window.DeviceOrientationEvent) {
 }
 window.addEventListener("deviceorientation", orientationUpdate);
 
-document.getElementById('file').onchange = function(){
-    let files = this.files;
-    document.getElementById('player').src = URL.createObjectURL(files[0]);
-    document.getElementById('player').play();
+audio_file.onchange = function(){
+    var files = this.files;
+    var file = URL.createObjectURL(files[0]);
+    audio_player.src = file;
+    audio_player.play();
 };
