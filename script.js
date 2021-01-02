@@ -1,11 +1,12 @@
 let supported = true;
 let beta = 9999;
 let flat = 9999;
+let isFlat = null;
 
 function noDeviceSupport() {
     if (supported === true) {
-        alert("Your browser or device doesn't support or doesn't have Device Orientation. " +
-            "Therefore, this app will not work with this browser or app.");
+        alert("Your browser or device doesn't support or doesn't have device orientation. " +
+            "Therefore, this app will not work with this browser or device.");
     }
 
     supported = false;
@@ -22,11 +23,26 @@ function setFlat() {
 function orientationUpdate(event) {
     beta = event.beta;  // In degree in the range [-180,180)
 
-    if(beta == null) { noDeviceSupport(); }
+    if(beta == null || beta === 9999) { noDeviceSupport(); }
     else if(supported) {
         document.getElementById('pBeta').innerText = 'Beta = ' + beta;
 
+        beta = beta + 180;
 
+        if(flat !== 9999) {
+            if(beta < flat && beta < (flat - 90)) {
+                isFlat = false;
+            }
+            else isFlat = !(beta > flat && beta > (flat + 90));
+
+            if(isFlat) {
+                document.getElementById('pPosition').innerText = 'Position: FLAT';
+            }
+            else {
+                document.getElementById('pPosition').innerText = 'Position: UP';
+            }
+
+        }
     }
 }
 
