@@ -15,8 +15,8 @@ function noDeviceSupport() {
 function setFlat() {
     if(beta === 9999 || beta == null) { noDeviceSupport(); }
     else {
-        flat = beta;
-        document.getElementById('pFlatVal').innerText = 'Flat = ' + flat;
+        flat = beta + 180;
+        document.getElementById('pFlatVal').innerText = 'Flat = ' + (flat - 180);
     }
 }
 
