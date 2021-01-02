@@ -34,6 +34,8 @@ function orientationUpdate(event) {
             document.getElementById('pFlatVal').innerText = 'Flat = ' + flat;
 
             needFlat = false;
+
+            alert(typeof(flat));
         }
 
         if(flat !== 9999) {
