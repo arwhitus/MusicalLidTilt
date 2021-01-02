@@ -15,7 +15,7 @@ function noDeviceSupport() {
 function setFlat() {
     if(beta === 9999 || beta == null) { noDeviceSupport(); }
     else {
-        flat = beta + 180;
+        flat = beta;
         document.getElementById('pFlatVal').innerText = 'Flat = ' + (flat - 180);
     }
 }
@@ -25,15 +25,15 @@ function orientationUpdate(event) {
 
     if(beta == null || beta === 9999) { noDeviceSupport(); }
     else if(supported) {
-        document.getElementById('pBeta').innerText = 'Beta = ' + beta;
-
         beta = beta + 180;
 
+        document.getElementById('pBeta').innerText = 'Beta = ' + (beta - 180);
+
         if(flat !== 9999) {
-            if(beta < flat && beta < (flat - 90)) {
+            if(beta < flat && beta < (flat - 45)) {
                 isFlat = false;
             }
-            else isFlat = !(beta > flat && beta > (flat + 90));
+            else isFlat = !(beta > flat && beta > (flat + 45));
 
             if(isFlat) {
                 document.getElementById('pPosition').innerText = 'Position: FLAT';
