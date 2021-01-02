@@ -1,6 +1,6 @@
 let supported = true;
-let beta = 9999;
-let flat = 9999;
+let beta = null;
+let flat = null;
 let isFlat = null;
 let needFlat = false;
 
@@ -14,17 +14,16 @@ function noDeviceSupport() {
 }
 
 function setFlat() {
-    if(beta === 9999 || beta == null) { noDeviceSupport(); }
+    if(beta == null) { noDeviceSupport(); }
     else {
         needFlat = true;
-        alert('test');
     }
 }
 
 function orientationUpdate(event) {
     beta = event.beta;  // In degree in the range [-180,180)
 
-    if(beta == null || beta === 9999) { noDeviceSupport(); }
+    if(beta == null) { noDeviceSupport(); }
     else if(supported) {
         beta = beta + 180;
 
@@ -37,7 +36,7 @@ function orientationUpdate(event) {
             needFlat = false;
         }
 
-        if(flat !== 9999) {
+        if(flat != null) {
             if(beta < flat && beta < (flat - 45)) {
                 isFlat = false;
             }
@@ -57,3 +56,9 @@ if (!window.DeviceOrientationEvent) {
     noDeviceSupport();
 }
 window.addEventListener("deviceorientation", orientationUpdate);
+
+document.getElementById('file').onchange = function(){
+    let files = this.files;
+    document.getElementById('player').src = URL.createObjectURL(files[0]);
+    document.getElementById('player').play();
+};
