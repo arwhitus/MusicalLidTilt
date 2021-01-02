@@ -2,6 +2,7 @@ let supported = true;
 let beta = 9999;
 let flat = 9999;
 let isFlat = null;
+let needFlat = false;
 
 function noDeviceSupport() {
     if (supported === true) {
@@ -15,8 +16,7 @@ function noDeviceSupport() {
 function setFlat() {
     if(beta === 9999 || beta == null) { noDeviceSupport(); }
     else {
-        flat = beta - 180;
-        document.getElementById('pFlatVal').innerText = 'Flat = ' + (flat - 180);
+        needFlat = true;
     }
 }
 
@@ -27,7 +27,13 @@ function orientationUpdate(event) {
     else if(supported) {
         beta = beta + 180;
 
-        document.getElementById('pBeta').innerText = 'Beta = ' + (beta - 180);
+        document.getElementById('pBeta').innerText = 'Beta = ' + beta;
+
+        if(needFlat) {
+            flat = beta;
+
+            document.getElementById('pFlatVal').innerText = 'Flat = ' + flat;
+        }
 
         if(flat !== 9999) {
             if(beta < flat && beta < (flat - 45)) {
@@ -41,7 +47,6 @@ function orientationUpdate(event) {
             else {
                 document.getElementById('pPosition').innerText = 'Position: UP';
             }
-
         }
     }
 }
