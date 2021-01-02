@@ -17,6 +17,7 @@ function setFlat() {
     if(beta === 9999 || beta == null) { noDeviceSupport(); }
     else {
         needFlat = true;
+        alert('test');
     }
 }
 
@@ -34,8 +35,6 @@ function orientationUpdate(event) {
             document.getElementById('pFlatVal').innerText = 'Flat = ' + flat;
 
             needFlat = false;
-
-            alert(typeof(flat));
         }
 
         if(flat !== 9999) {
