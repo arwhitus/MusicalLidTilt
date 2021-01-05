@@ -10,15 +10,13 @@
 
 <h3>Musical Lid Tilt 12</h3>
 
+<button type="button" id="btnSetFlat" onclick="getEvent()">GET SENSOR</button>
+
 <p id="pPosition">Position: NOT SET</p>
 
 <button type="button" id="btnSetFlat" onclick="setFlat()">SET FLAT</button>
 
-<input id="audio_file" type="file" accept="audio/*" />
-<!-- <audio control id="audio_player" /> -->
-<p>
-    <audio controls id="audio_player"></audio>
-</p>
+<input id="inputFile" type="file" accept="audio/*" />
 
 <p style="font-style: italic">Debug Data:</p>
 <p id="pBeta">Beta Here</p>

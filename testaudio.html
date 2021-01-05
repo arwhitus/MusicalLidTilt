@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <script>
+        audio_file.onchange = function() {
+            var files = this.files;
+            var file = URL.createObjectURL(files[0]);
+            audio_player.src = file;
+            audio_player.play();
+        };
+    </script>
+</head>
+<body>
+<body>
+
+<input id="inputFile" type="file" accept="audio/*" />
+<button type="button" id="btnSetFlat" onclick="playSound()">PLAY</button>
+
+<script>
+
+    const sound = new Audio()
+
+    function playSound() {
+        const files = document.getElementById('inputFile').files
+        const file = URL.createObjectURL(files[0])
+        sound.src = file
+        sound.play()
+    }
+
+</script>
+
+</body>
+</body>
+</html>
